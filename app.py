@@ -10,6 +10,7 @@ from stats import (
 )
 
 app = Flask(__name__)
+# Running some tests
 
 
 def get_statistics(data: pandas.DataFrame):
@@ -19,8 +20,10 @@ def get_statistics(data: pandas.DataFrame):
     stats["no_of_numerical_features"] = no_of_numerical_features(data)
     stats["no_of_qualitative_features"] = no_of_qualitative_features(data)
 
-    stats["skew"] = data.select_dtypes(include=[numpy.number]).skew().to_frame().to_html()
-    stats["kurtosis"] = data.select_dtypes(include=[numpy.number]).kurtosis().to_frame().to_html()
+    stats["skew"] = data.select_dtypes(
+        include=[numpy.number]).skew().to_frame().to_html()
+    stats["kurtosis"] = data.select_dtypes(
+        include=[numpy.number]).kurtosis().to_frame().to_html()
 
     stats["other_stats"] = find_stats_of_all_numerical_columns(data).to_html()
 
